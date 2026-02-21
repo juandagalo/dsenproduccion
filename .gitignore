@@ -84,6 +84,9 @@ target/
 # Hydra logs
 outputs
 
+### Claude Code
+.claude/skills/
+
 ### Editors
 
 # Jupyter NB Checkpoints
