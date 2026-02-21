@@ -1,0 +1,34 @@
+{
+  "template": "https://github.com/JoseRZapata/data-science-project-template",
+  "commit": "1e59f095ee3e57250814716b03504b2cc3684fdb",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "DSEnProduccion",
+      "repo_name": "dsenproduccion",
+      "github_username": "juandagalo",
+      "author_name": "Daniel Lopez",
+      "author_email": "juandagarcial@gmail.com",
+      "description": "A short description of the project.",
+      "compatible_python_versions": "3.12",
+      "mkdocs": true,
+      "codecov": true,
+      "license": "MIT License",
+      "_copy_without_render": [
+        ".code_quality/*",
+        ".vscode/*",
+        "config/*",
+        "data/*",
+        "src/*",
+        "tests/*",
+        ".editorconfig",
+        ".pre-commit-config.yaml",
+        "codecov.yaml",
+        "docs/*"
+      ],
+      "_template": "https://github.com/JoseRZapata/data-science-project-template",
+      "_commit": "1e59f095ee3e57250814716b03504b2cc3684fdb"
+    }
+  },
+  "directory": null
+}
