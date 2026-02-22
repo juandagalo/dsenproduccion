@@ -85,7 +85,10 @@ target/
 outputs
 
 ### Claude Code
-.claude/skills/
+.claude/
+
+### Agents
+.agents/
 
 ### Editors
 
