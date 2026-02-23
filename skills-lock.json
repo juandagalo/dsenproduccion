@@ -9,12 +9,12 @@
     "scikit-learn": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",
-      "computedHash": "34ec8dd2e3f30fc4356def435c4918e68c539b761ec1369154753e7a9b91275b"
+      "computedHash": "f03f68164d506a6cdf7e8cae1e46bd38c0e1327248d9aaeece66cb4b6392a3c7"
     },
     "seaborn": {
       "source": "davila7/claude-code-templates",
       "sourceType": "github",
-      "computedHash": "8b40700157913b8e24b9b304c40299b509fbd2c15159733ee3f1806b0edd3e7c"
+      "computedHash": "ad96cba6af5b386be002c83190d447e012ea0fa19b1d47c76c29dd1868e797ba"
     },
     "statistics-math": {
       "source": "pluginagentmarketplace/custom-plugin-data-engineer",
