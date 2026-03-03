@@ -84,6 +84,12 @@ target/
 # Hydra logs
 outputs
 
+### Claude Code
+.claude/
+
+### Agents
+.agents/
+
 ### Editors
 
 # Jupyter NB Checkpoints

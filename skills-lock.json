@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "Pandas Data Analysis": {
+      "source": "pluginagentmarketplace/custom-plugin-python",
+      "sourceType": "github",
+      "computedHash": "33ee9dcf6d5ea38d65bb59c4c6c1337d90688a71829d76cd781de403e68dd533"
+    },
+    "scikit-learn": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "f03f68164d506a6cdf7e8cae1e46bd38c0e1327248d9aaeece66cb4b6392a3c7"
+    },
+    "seaborn": {
+      "source": "davila7/claude-code-templates",
+      "sourceType": "github",
+      "computedHash": "ad96cba6af5b386be002c83190d447e012ea0fa19b1d47c76c29dd1868e797ba"
+    },
+    "statistics-math": {
+      "source": "pluginagentmarketplace/custom-plugin-data-engineer",
+      "sourceType": "github",
+      "computedHash": "92a0445265788c8d78ca855bf4dcdb76421f15265a50b786e8fd40c6abb7763b"
+    }
+  }
+}
