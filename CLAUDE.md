@@ -32,6 +32,13 @@ Data science project using the FTI (Feature/Training/Inference) Pipeline archite
 - `make docs` - Serve documentation locally with MkDocs
 - `make docs_test` - Build docs to check for errors
 
+## Current Work
+
+Active dataset: **Telco Customer Churn** (7,043 rows × 21 columns, target: `Churn`).
+- Raw CSV: `data/01_raw/Churn/Clientes_Telcomunicaciones-Churn.csv`
+- Intermediate: `data/02_intermediate/Churn/churn_raw.parquet`
+- Primary: `data/03_primary/Churn/churn_primary.parquet`
+
 ## Architecture
 
 ### FTI Pipeline Structure
@@ -50,9 +57,11 @@ Data science project using the FTI (Feature/Training/Inference) Pipeline archite
 
 `src/tmp_mock.py` and `tests/test_mock.py` are scaffolding placeholders — delete them once real source files exist.
 
+`models/` (top-level) is for final model artifacts, separate from `data/06_models/`.
+
 ### Data Layer Convention
 
-Data flows through numbered layers in `data/` — **never write back to an earlier layer**:
+Data flows through numbered layers in `data/` — **never write back to an earlier layer**. All `data/**` paths are gitignored (only `.gitkeep` files are tracked):
 
 | Layer | Purpose |
 |---|---|
@@ -93,9 +102,10 @@ Use `notebooks/notebook_template.ipynb` as the starting point for new notebooks.
 - **`assert` statements (S101) are allowed in tests** (bandit exception configured).
 
 ### Ruff (`.code_quality/ruff.toml`)
-- Line length: 100, double quotes, Python 3.12+, max complexity: 10
+- Line length: 100, double quotes, max complexity: 10
 - Applies to `.ipynb` notebooks as well
-- Checks: bugbear, mccabe, pycodestyle, pyflakes, pylint, isort, bandit, pyupgrade, simplify, tryceratops
+- Pre-commit runs both `ruff` (lint + auto-fix) and `ruff-format` (auto-formatting)
+- Checks: bugbear, mccabe, pycodestyle, pyflakes, pylint, isort, bandit, pyupgrade, ruff, simplify, tryceratops
 
 ### MyPy (`.code_quality/mypy.ini`)
 - Strict: `disallow_untyped_defs`, `disallow_untyped_calls`, `ignore_missing_imports: True`
