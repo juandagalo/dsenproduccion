@@ -1,0 +1,46 @@
+input_path: "data/03_primary/Churn/churn_primary.parquet"
+feature_config_path: "conf/data_preparation/features.yml"
+model_output_path: "data/06_models/Churn"
+reporting_output_path: "data/08_reporting/Churn"
+target: "Churn"
+
+cv:
+  n_splits: 5
+  shuffle: true
+  random_state: 42
+
+scoring:
+  - "roc_auc"
+  - "f1"
+  - "precision"
+  - "recall"
+  - "accuracy"
+primary_metric: "test_roc_auc"
+
+models:
+  logistic_regression:
+    class: "sklearn.linear_model.LogisticRegression"
+    needs_scaler: true
+    params:
+      class_weight: "balanced"
+      solver: "lbfgs"
+      max_iter: 1000
+      random_state: 42
+
+  random_forest:
+    class: "sklearn.ensemble.RandomForestClassifier"
+    needs_scaler: false
+    params:
+      class_weight: "balanced"
+      n_estimators: 100
+      random_state: 42
+
+  gradient_boosting:
+    class: "sklearn.ensemble.GradientBoostingClassifier"
+    needs_scaler: false
+    params:
+      n_estimators: 100
+      random_state: 42
+
+best_pipeline_filename: "churn_best_pipeline.joblib"
+cv_results_filename: "cv_results.json"
