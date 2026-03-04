@@ -1,0 +1,24 @@
+target: "Churn"
+drop_columns: ["gender", "PhoneService", "TotalCharges"]
+numeric_columns: ["tenure", "MonthlyCharges"]
+boolean_columns: ["SeniorCitizen", "Partner", "Dependents", "PaperlessBilling"]
+consolidate_ohe_columns:
+  [
+    "MultipleLines",
+    "OnlineSecurity",
+    "OnlineBackup",
+    "DeviceProtection",
+    "TechSupport",
+    "StreamingTV",
+    "StreamingMovies",
+  ]
+multi_ohe_columns: ["InternetService", "PaymentMethod"]
+contract_column: "Contract"
+contract_order: ["Month-to-month", "One year", "Two year"]
+service_level_replacements: { "No internet service": "No", "No phone service": "No" }
+new_customer_threshold: 6
+numeric_impute_strategy: "median"
+categorical_impute_strategy: "most_frequent"
+boolean_impute_strategy: "most_frequent"
+input_path: "data/03_primary/Churn/churn_primary.parquet"
+feature_output_path: "data/04_feature/Churn"
