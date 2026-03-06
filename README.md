@@ -28,6 +28,31 @@ Folder structure for data science projects   | [Data structure] | [article](http
 Template for pull requests                   | [Pull Request template] | [article](https://www.awesomecodereviews.com/pull-request-template/)
 Template for notebooks                       | [Notebook template] |
 
+## Churn Prediction Project
+
+End-to-end ML project predicting customer churn for a Telco company (7,043 customers, 21 features). Built following the **FTI (Feature/Training/Inference) Pipeline** architecture.
+
+| Step | Description | Key Output |
+|------|-------------|------------|
+| Data Loading & Cleaning | CSV ingestion, type casting, parquet export | `data/03_primary/` |
+| Exploration & Analysis | EDA, correlation, variable analysis | Notebooks in `2-exploration/`, `3-analysis/` |
+| Feature Engineering | sklearn ColumnTransformer (22 features) | `data/04_feature/` |
+| Baseline Training | LR vs RF vs GB cross-validation | LR best, ROC-AUC 0.846 |
+| Hyperparameter Tuning | GridSearchCV on LR (ElasticNet) | C=0.5, l1_ratio=0.0 |
+| Threshold & Interpretation | F1-optimal threshold, coefficients | Threshold 0.59, ROC-AUC 0.848 |
+| Inference & Demo App | Streamlit app with 3 tabs | `app/app.py` |
+
+### Run the Streamlit App
+
+```bash
+uv run --group app streamlit run app/app.py
+```
+
+The app provides:
+- **Individual Prediction** -- fill a form and get churn probability, prediction, and risk level
+- **Batch Prediction** -- upload a CSV and see filtered results (Likely to Churn / Likely to Stay)
+- **Model Insights** -- ROC-AUC, PR-AUC, feature coefficients chart, threshold comparison
+
 ## Set up the environment
 
 1. Initialize git in local:

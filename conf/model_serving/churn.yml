@@ -1,0 +1,19 @@
+model_path: "data/06_models/Churn/churn_tuned_pipeline.joblib"
+evaluation_results_path: "data/08_reporting/Churn/evaluation_results.json"
+feature_config_path: "conf/data_preparation/features.yml"
+prediction_output_path: "data/07_model_output/Churn"
+
+input_columns:
+  numeric: ["tenure", "MonthlyCharges"]
+  binary: ["SeniorCitizen", "Partner", "Dependents", "PaperlessBilling"]
+  services: ["MultipleLines", "OnlineSecurity", "OnlineBackup", "DeviceProtection",
+             "TechSupport", "StreamingTV", "StreamingMovies"]
+  categorical:
+    InternetService: ["DSL", "Fiber optic", "No"]
+    PaymentMethod: ["Electronic check", "Mailed check",
+                    "Bank transfer (automatic)", "Credit card (automatic)"]
+    Contract: ["Month-to-month", "One year", "Two year"]
+
+risk_levels:
+  low_max: 0.3
+  medium_max: 0.6
