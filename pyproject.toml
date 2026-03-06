@@ -40,6 +40,10 @@ docs = [
     "pymdown-extensions>=10.19",
 ]
 #
+app = [
+    "streamlit>=1.45.0",
+    "plotly>=6.1.0",
+]
 
 [tool.uv]
 package = false
