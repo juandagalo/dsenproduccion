@@ -1,0 +1,9 @@
+tenure,MonthlyCharges,SeniorCitizen,Partner,Dependents,PaperlessBilling,MultipleLines,OnlineSecurity,OnlineBackup,DeviceProtection,TechSupport,StreamingTV,StreamingMovies,InternetService,PaymentMethod,Contract
+2,70.05,False,False,False,True,No,No,No,No,No,No,No,Fiber optic,Electronic check,Month-to-month
+54,105.45,False,True,True,False,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Fiber optic,Bank transfer (automatic),Two year
+12,45.50,True,False,False,True,No,No,No,No,No,No,No,DSL,Electronic check,Month-to-month
+36,79.85,False,True,False,False,Yes,Yes,No,Yes,Yes,No,No,DSL,Mailed check,One year
+6,95.20,False,False,False,True,Yes,No,No,No,No,Yes,Yes,Fiber optic,Electronic check,Month-to-month
+48,25.10,False,True,True,False,No,No,No,No,No,No,No,No,Credit card (automatic),Two year
+18,55.90,False,False,False,True,Yes,No,Yes,No,No,Yes,No,Fiber optic,Electronic check,Month-to-month
+72,89.15,True,True,False,False,Yes,Yes,Yes,Yes,Yes,Yes,Yes,DSL,Bank transfer (automatic),Two year

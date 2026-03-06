@@ -122,6 +122,16 @@ def render_batch_tab(config: dict, pipeline: object, eval_results: dict) -> None
     """Render the Batch Prediction tab."""
     threshold = eval_results["chosen_threshold"]
 
+    sample_path = Path(__file__).parent / "sample_customers.csv"
+    with open(sample_path, "rb") as f:
+        sample_csv = f.read()
+    st.download_button(
+        "Download sample CSV template",
+        data=sample_csv,
+        file_name="sample_customers.csv",
+        mime="text/csv",
+    )
+
     uploaded = st.file_uploader("Upload a CSV file with customer data", type=["csv"])
     if uploaded is not None:
         batch_df = pd.read_csv(uploaded)
