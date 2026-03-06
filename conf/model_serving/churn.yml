@@ -1,5 +1,5 @@
-model_path: "data/06_models/Churn/churn_tuned_pipeline.joblib"
-evaluation_results_path: "data/08_reporting/Churn/evaluation_results.json"
+model_path: "models/Churn/churn_tuned_pipeline.joblib"
+evaluation_results_path: "models/Churn/evaluation_results.json"
 feature_config_path: "conf/data_preparation/features.yml"
 prediction_output_path: "data/07_model_output/Churn"
 
