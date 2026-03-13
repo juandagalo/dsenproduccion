@@ -36,9 +36,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   architecture (raw -> intermediate -> primary).
 - **Unit Tests**: Comprehensive test suites for data transformation (14 tests),
   model training (20 tests), hyperparameter tuning (14 tests), model evaluation
-  (18 tests), and inference prediction (18 tests) -- 84 tests total in `src/`.
-- **FTI Pipeline Entry Points**: Feature pipeline and training pipeline
-  orchestration scripts in `src/pipelines/`.
+  (18 tests), inference prediction (18 tests), data validation (14 tests), and
+  inference pipeline (4 tests) -- 102 tests total.
+- **FTI Pipeline Entry Points**: Feature pipeline, training pipeline, and
+  inference pipeline orchestration scripts in `src/pipelines/`.
+- **Data Validation Module**: Config-driven `src/data/validation.py` with schema
+  checks for expected columns, null fractions, numeric ranges, and allowed
+  categorical values. Validation rules defined in `conf/data_validation/churn.yml`.
 
 ### Fixed
 
