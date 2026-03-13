@@ -2,6 +2,7 @@ model_path: "models/Churn/churn_tuned_pipeline.joblib"
 evaluation_results_path: "models/Churn/evaluation_results.json"
 feature_config_path: "conf/data_preparation/features.yml"
 prediction_output_path: "data/07_model_output/Churn"
+input_path: "data/03_primary/Churn/churn_primary.parquet"
 
 input_columns:
   numeric: ["tenure", "MonthlyCharges"]
