@@ -34,3 +34,9 @@ allowed_values:
   TechSupport: ["Yes", "No", "No internet service"]
   StreamingTV: ["Yes", "No", "No internet service"]
   StreamingMovies: ["Yes", "No", "No internet service"]
+
+max_duplicate_fraction: 0.0
+
+row_count:
+  min: 5000
+  max: 10000

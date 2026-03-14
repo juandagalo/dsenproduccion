@@ -157,10 +157,79 @@ def validate_categories(df: pd.DataFrame, config: dict[str, Any]) -> list[str]:
     return errors
 
 
+def validate_no_duplicates(df: pd.DataFrame, config: dict[str, Any]) -> list[str]:
+    """Check that the fraction of duplicate rows does not exceed the configured threshold.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame to validate.
+    config : dict[str, Any]
+        Validation config with optional ``max_duplicate_fraction`` key.
+
+    Returns
+    -------
+    list[str]
+        Error messages if duplicate fraction exceeds threshold. Empty list if valid.
+    """
+    errors: list[str] = []
+    max_fraction = config.get("max_duplicate_fraction")
+    if max_fraction is None:
+        return errors
+
+    n_rows = len(df)
+    if n_rows == 0:
+        return errors
+
+    duplicate_count = int(df.duplicated().sum())
+    duplicate_fraction = duplicate_count / n_rows
+
+    if duplicate_fraction > max_fraction:
+        errors.append(
+            f"Duplicate fraction {duplicate_fraction:.2%} exceeds "
+            f"max allowed {max_fraction:.2%} ({duplicate_count} duplicates)"
+        )
+
+    return errors
+
+
+def validate_row_count(df: pd.DataFrame, config: dict[str, Any]) -> list[str]:
+    """Check that the number of rows falls within the configured min/max bounds.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+        DataFrame to validate.
+    config : dict[str, Any]
+        Validation config with optional ``row_count`` key containing ``min`` and ``max``.
+
+    Returns
+    -------
+    list[str]
+        Error messages if row count is outside bounds. Empty list if valid.
+    """
+    errors: list[str] = []
+    row_count_config = config.get("row_count")
+    if row_count_config is None:
+        return errors
+
+    n_rows = len(df)
+    min_rows = row_count_config["min"]
+    max_rows = row_count_config["max"]
+
+    if n_rows < min_rows:
+        errors.append(f"Row count {n_rows} is below minimum {min_rows}")
+    if n_rows > max_rows:
+        errors.append(f"Row count {n_rows} is above maximum {max_rows}")
+
+    return errors
+
+
 def validate_dataframe(df: pd.DataFrame, config: dict[str, Any]) -> list[str]:
     """Run all validation checks on a DataFrame.
 
-    Orchestrates column, null, numeric range, and category validation.
+    Orchestrates column, null, numeric range, category, duplicate, and row count
+    validation.
 
     Parameters
     ----------
@@ -179,4 +248,6 @@ def validate_dataframe(df: pd.DataFrame, config: dict[str, Any]) -> list[str]:
     errors.extend(validate_nulls(df, config))
     errors.extend(validate_numeric_ranges(df, config))
     errors.extend(validate_categories(df, config))
+    errors.extend(validate_no_duplicates(df, config))
+    errors.extend(validate_row_count(df, config))
     return errors
