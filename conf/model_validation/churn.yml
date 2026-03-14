@@ -1,0 +1,4 @@
+max_class_drift: 0.05
+max_overfit_gap: 0.10
+min_roc_auc: 0.70
+primary_metric: "roc_auc"
