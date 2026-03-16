@@ -12,8 +12,10 @@ from data.validation import (
     validate_categories,
     validate_columns,
     validate_dataframe,
+    validate_no_duplicates,
     validate_nulls,
     validate_numeric_ranges,
+    validate_row_count,
 )
 
 
@@ -181,12 +183,67 @@ class TestValidateCategories:
         assert any("InternetService" in e for e in errors)
 
 
+class TestValidateNoDuplicates:
+    """Tests for validate_no_duplicates."""
+
+    def test_pass_no_duplicates(
+        self, primary_df: pd.DataFrame, validation_config: dict[str, Any]
+    ) -> None:
+        config = {"max_duplicate_fraction": 0.0}
+        errors = validate_no_duplicates(primary_df, config)
+        assert errors == []
+
+    def test_fail_with_duplicates(self, primary_df: pd.DataFrame) -> None:
+        df = pd.concat([primary_df, primary_df.iloc[[0]]], ignore_index=True)
+        config = {"max_duplicate_fraction": 0.0}
+        errors = validate_no_duplicates(df, config)
+        assert len(errors) == 1
+        assert "Duplicate fraction" in errors[0]
+
+    def test_skip_when_key_missing(self, primary_df: pd.DataFrame) -> None:
+        errors = validate_no_duplicates(primary_df, {})
+        assert errors == []
+
+    def test_pass_within_tolerance(self, primary_df: pd.DataFrame) -> None:
+        df = pd.concat([primary_df, primary_df.iloc[[0]]], ignore_index=True)
+        config = {"max_duplicate_fraction": 0.10}
+        errors = validate_no_duplicates(df, config)
+        assert errors == []
+
+
+class TestValidateRowCount:
+    """Tests for validate_row_count."""
+
+    def test_pass_within_range(self, primary_df: pd.DataFrame) -> None:
+        config = {"row_count": {"min": 10, "max": 30}}
+        errors = validate_row_count(primary_df, config)
+        assert errors == []
+
+    def test_fail_below_min(self, primary_df: pd.DataFrame) -> None:
+        config = {"row_count": {"min": 100, "max": 200}}
+        errors = validate_row_count(primary_df, config)
+        assert len(errors) == 1
+        assert "below minimum" in errors[0]
+
+    def test_fail_above_max(self, primary_df: pd.DataFrame) -> None:
+        config = {"row_count": {"min": 1, "max": 10}}
+        errors = validate_row_count(primary_df, config)
+        assert len(errors) == 1
+        assert "above maximum" in errors[0]
+
+    def test_skip_when_key_missing(self, primary_df: pd.DataFrame) -> None:
+        errors = validate_row_count(primary_df, {})
+        assert errors == []
+
+
 class TestValidateDataframe:
     """Tests for validate_dataframe."""
 
     def test_pass_clean_data(
         self, primary_df: pd.DataFrame, validation_config: dict[str, Any]
     ) -> None:
+        validation_config["row_count"] = {"min": 1, "max": 100}
+        validation_config["max_duplicate_fraction"] = 0.0
         errors = validate_dataframe(primary_df, validation_config)
         assert errors == []
 
