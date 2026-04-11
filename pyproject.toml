@@ -23,9 +23,9 @@ repository = "https://github.com/juandagalo/dsenproduccion"
 [dependency-groups]
 dev = [
     "pre-commit>=4.5.1", # Code linting and formatting
-    "pytest>=9.0.2", # Testing framework
+    "pytest>=9.0.3", # Testing framework
     "pytest-cookies>=0.7.0",
-    "pytest-cov>=7.0.0",
+    "pytest-cov>=7.1.0",
     "cruft[pyproject]>=2.16.0",# Automated Cookiecutter template synchronization
     "matplotlib>=3.10.8",
     "jupyter>=1.1.1",
@@ -35,9 +35,9 @@ dev = [
 #
 docs = [
     "mkdocs>=1.6.1",
-    "mkdocs-material>=9.7.1",
+    "mkdocs-material>=9.7.6",
     "mkdocstrings[python]>=1.0.3",
-    "pymdown-extensions>=10.19",
+    "pymdown-extensions>=10.21.2",
 ]
 #
 app = [
